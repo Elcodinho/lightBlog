@@ -1,0 +1,21 @@
+.nav__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav__link {
+  display: block;
+  font-size: 20px;
+  transition: all 0.2s linear;
+}
+
+.nav__link:hover {
+  transform: scale(105%);
+  color: aqua;
+}
+
+.active {
+  color: rgb(0, 128, 255);
+}

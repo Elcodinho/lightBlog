@@ -1,0 +1,22 @@
+.error-page__title {
+  margin: 50px 0;
+  font-size: 40px;
+  font-weight: 800;
+  text-align: center;
+  color: red;
+}
+
+.error-page__link {
+  display: block;
+
+  font-size: 22px;
+  font-weight: 600;
+  color: rgb(0, 85, 255);
+  text-align: center;
+
+  transition: transform 0.2s linear;
+}
+
+.error-page__link:hover {
+  transform: scale(105%);
+}

@@ -1,0 +1,28 @@
+.post-page__article {
+  padding: 15px;
+  border-radius: 5px;
+  background: whitesmoke;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+}
+
+.post-page__time {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 13px;
+  color: grey;
+}
+
+.post-page__text {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.post-page__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  margin-bottom: 20px;
+}

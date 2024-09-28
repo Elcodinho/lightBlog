@@ -1,0 +1,22 @@
+.fetch-error__title {
+  margin: 40px 0 30px;
+  font-size: 35px;
+  font-weight: 800;
+  text-align: center;
+  color: red;
+}
+
+.fetch-error__link {
+  display: block;
+
+  font-size: 22px;
+  font-weight: 600;
+  color: rgb(0, 85, 255);
+  text-align: center;
+
+  transition: transform 0.2s linear;
+}
+
+.fetch-error__link:hover {
+  transform: scale(105%);
+}

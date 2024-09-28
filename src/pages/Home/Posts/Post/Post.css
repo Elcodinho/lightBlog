@@ -1,0 +1,32 @@
+.post__item {
+  display: block;
+
+  margin-bottom: 10px;
+
+  border-radius: 5px;
+  background: whitesmoke;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+
+  transition: all 0.2s linear;
+}
+
+.post__link {
+  display: block;
+  height: 100%;
+  padding: 15px;
+}
+
+.post__item:hover {
+  background: rgb(219, 219, 219);
+}
+
+.post__time {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 13px;
+  color: grey;
+}
+
+.post__text {
+  font-size: 20px;
+}
