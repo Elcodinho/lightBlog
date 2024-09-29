@@ -1,15 +1,44 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectPosts } from "@store/postSlice";
 import { Post } from "./Post/Post";
 import "./Posts.css";
 
-export function Posts() {
+export function Posts({ search, sortOrder }) {
   const posts = useSelector(selectPosts);
-  const postsReverse = [...posts].reverse();
+  const [searchResult, setSearchResult] = useState([]);
+  const [debouncedSearch, setDebouncedSearch] = useState(search);
+
+  // Используем debounce чтобы снизить нагрузку при поиске поста
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 300);
+
+    // Очистка таймера при размонтировании или изменении значения
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search]);
+
+  // Фильтруем посты и оставляем только те, что содержат строку из инпута search.
+  useEffect(() => {
+    const filteredPosts = posts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(search.toLowerCase()) ||
+        post.body.toLowerCase().includes(search.toLowerCase())
+    );
+
+    if (sortOrder === "new") {
+      setSearchResult(filteredPosts.reverse());
+    } else {
+      setSearchResult(filteredPosts);
+    }
+  }, [posts, debouncedSearch, sortOrder]); // Важно использовать зависимость от sortOrder, чтобы сортировка по дате была динамической
 
   return (
     <ul className="posts__list">
-      {postsReverse.map((item) => (
+      {searchResult.map((item) => (
         <Post
           key={item.id}
           id={item.id}

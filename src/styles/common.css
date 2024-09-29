@@ -9,6 +9,7 @@ html {
 body {
   position: relative;
   background-color: rgb(242, 253, 253);
+  /* background-color: rgb(230, 246, 248); */
   font-family: "Roboto Condensed", Arial, sans-serif;
   font-weight: 400;
   font-style: normal;

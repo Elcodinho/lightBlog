@@ -1,0 +1,42 @@
+.sort {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.search-label {
+  display: block;
+
+  font-weight: 700;
+  font-style: italic;
+}
+
+.search-item {
+  display: block;
+
+  min-width: 300px;
+  margin-bottom: 20px;
+  padding: 10px;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.search-select {
+  background-color: white;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"><polygon points="6,9 12,15 18,9" /></svg>'); /* Стрелка вниз */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+.search-item:hover {
+  border-color: #888;
+}
+
+.search-item:focus {
+  outline: none;
+  border-color: blue;
+}

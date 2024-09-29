@@ -11,6 +11,11 @@
   transition: all 0.2s linear;
 }
 
+.reg-link {
+  margin-left: 20px;
+  color: rgb(184, 184, 186);
+}
+
 .nav__link:hover {
   transform: scale(105%);
   color: aqua;
