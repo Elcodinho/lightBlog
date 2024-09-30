@@ -4,15 +4,22 @@ import { selectPosts } from "@store/postSlice";
 import { Post } from "./Post/Post";
 import "./Posts.css";
 
-export function Posts({ search, sortOrder }) {
+export function Posts({
+  search,
+  sortOrder,
+  currentPage,
+  postsPerPage,
+  searchResult,
+  setSearchResult,
+}) {
+  // последние два пропса тестовые
   const posts = useSelector(selectPosts);
-  const [searchResult, setSearchResult] = useState([]);
   const [debouncedSearch, setDebouncedSearch] = useState(search);
 
   // Используем debounce чтобы снизить нагрузку при поиске поста
   useEffect(() => {
     const handler = setTimeout(() => {
-      setDebouncedSearch(search);
+      setDebouncedSearch(search.trim());
     }, 300);
 
     // Очистка таймера при размонтировании или изменении значения
@@ -36,9 +43,14 @@ export function Posts({ search, sortOrder }) {
     }
   }, [posts, debouncedSearch, sortOrder]); // Важно использовать зависимость от sortOrder, чтобы сортировка по дате была динамической
 
+  // Рассчитываем индексы постов для текущей страницы
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = searchResult.slice(indexOfFirstPost, indexOfLastPost);
+
   return (
     <ul className="posts__list">
-      {searchResult.map((item) => (
+      {currentPosts.map((item) => (
         <Post
           key={item.id}
           id={item.id}

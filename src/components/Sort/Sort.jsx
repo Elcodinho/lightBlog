@@ -1,6 +1,12 @@
+import React from "react";
 import "./Sort.css";
 
-export function Sort({ search, setSearch, sortOrder, setSortOrder }) {
+export const Sort = React.memo(function Sort({
+  search,
+  setSearch,
+  sortOrder,
+  setSortOrder,
+}) {
   // Устанвливаем значение для порядка сортирвки
   function handleSortChange(e) {
     setSortOrder(e.target.value);
@@ -16,22 +22,22 @@ export function Sort({ search, setSearch, sortOrder, setSortOrder }) {
           id="search-input"
           placeholder="Введите текст"
           value={search}
-          onChange={(e) => setSearch(e.target.value.trim())}
+          onChange={(e) => setSearch(e.target.value)}
         />
       </label>
 
-      <label
-        className="search-label"
-        htmlFor="select-search"
-        onChange={handleSortChange}
-        value={sortOrder}
-      >
+      <label className="search-label" htmlFor="select-search">
         Сортировать посты по дате
-        <select className="search-item search-select" id="select-search">
+        <select
+          className="search-item search-select"
+          id="select-search"
+          value={sortOrder}
+          onChange={handleSortChange}
+        >
           <option value="new">Сначала новые</option>
           <option value="old">Сначала старые</option>
         </select>
       </label>
     </section>
   );
-}
+});
