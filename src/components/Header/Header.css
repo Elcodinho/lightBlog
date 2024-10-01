@@ -17,3 +17,47 @@
   font-size: 24px;
   font-style: italic;
 }
+
+.header-links__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+}
+
+.login-link {
+  display: block;
+  font-size: 20px;
+  transition: all 0.2s linear;
+}
+
+.login-link:hover {
+  transform: scale(105%);
+  color: aqua;
+}
+
+.logout-btn {
+  display: block;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: none;
+
+  font-size: 20px;
+  color: white;
+  transition: all 0.2s linear;
+}
+
+.logout-btn:hover {
+  transform: scale(105%);
+  color: aqua;
+}
+
+.logout-btn:active {
+  color: rgb(0, 128, 255);
+}
+
+.active {
+  color: rgb(0, 128, 255);
+}

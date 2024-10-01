@@ -1,0 +1,14 @@
+.login__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+.login__title {
+  margin-bottom: 25px;
+
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+}

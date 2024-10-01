@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { API_URL } from "../components/constants/constants";
+import { API_URL } from "@constants/constants";
 
 // Функция получения постов
 export const getPosts = createAsyncThunk(
@@ -30,6 +30,7 @@ export const addPost = createAsyncThunk(
         title: title,
         datetime: time,
         body: text,
+        isEdit: false,
       };
       const response = await fetch(API_URL, {
         method: "POST",
@@ -75,6 +76,7 @@ export const editPost = createAsyncThunk(
       title: title,
       datetime: time,
       body: text,
+      isEdit: true,
     };
     try {
       const response = await fetch(`${API_URL}/${id}`, {
