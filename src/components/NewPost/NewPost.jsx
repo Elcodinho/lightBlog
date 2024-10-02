@@ -2,41 +2,47 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { format } from "date-fns";
 import { ru } from "date-fns/locale";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "@store/postSlice";
+import { userSelect } from "@store/userSlice";
 import { Form } from "@components/Forms/Form/Form";
 import { FetchError } from "@components/FetchError/FetchError";
-import { MyContext } from "@MyContext/index";
+import { BtnContext } from "@MyContext/BtnContext";
 import "./NewPost.css";
 
 export function NewPost() {
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
-  const [fetchError, setFetchError] = useState(null);
+  const [title, setTitle] = useState(""); // Состояние заголовка поста
+  const [text, setText] = useState(""); // Состояние текста поста
+  const [fetchError, setFetchError] = useState(null); // Состояние ошибки при отправке запросе о добавлении нового поста
+  const user = useSelector(userSelect);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if (title.trim() !== "" && text.trim() !== "") {
       const currentDate = new Date();
       const time = format(currentDate, "d MMMM yyyy, HH:mm", {
         locale: ru,
       });
-      dispatch(addPost({ title: title.trim(), text: text.trim(), time })).then(
-        (action) => {
-          if (addPost.fulfilled.match(action)) {
-            // Если добавление поста успешно, перенаправляем на главную
-            setText("");
-            setTitle("");
-            setFetchError(null);
-            navigate("/");
-          } else {
-            // Обработка ошибки, если добавление не удалось
-            setFetchError(action.payload);
-          }
+      const author = user.email;
+      try {
+        const action = await dispatch(
+          addPost({ title: title.trim(), text: text.trim(), time, author })
+        );
+        if (addPost.fulfilled.match(action)) {
+          setText("");
+          setTitle("");
+          setFetchError(null);
+          navigate("/");
+        } else {
+          // Обработка ошибки, если добавление не удалось
+          setFetchError(action.payload);
         }
-      );
+      } catch (error) {
+        // Обработка ошибки, если добавление не удалось
+        setFetchError("Произошла ошибка");
+      }
     } else {
       alert("Заполните все поля");
     }
@@ -55,15 +61,21 @@ export function NewPost() {
               />
             )}
             {!fetchError && (
-              <MyContext.Provider value="Опубликовать">
+              <BtnContext.Provider
+                value={{
+                  confirmTitle: "Опубликовать пост?",
+                  confirmBtn: "Опубликовать",
+                }}
+              >
                 <Form
-                  title={title}
+                  title={title} // Заголовок поста
                   setTitle={setTitle}
-                  text={text}
+                  text={text} // Текст поста
                   setText={setText}
-                  handleSubmit={handleSubmit}
+                  btnText="Добавить пост" // Текст кнопки в форме
+                  handleSubmit={handleSubmit} // Функция submit
                 />
-              </MyContext.Provider>
+              </BtnContext.Provider>
             )}
           </div>
         </div>

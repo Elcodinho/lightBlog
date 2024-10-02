@@ -57,6 +57,7 @@ export function Posts({
           title={item.title}
           dateTime={item.datetime}
           body={item.body}
+          author={item.author}
           isEdit={item.isEdit}
         />
       ))}

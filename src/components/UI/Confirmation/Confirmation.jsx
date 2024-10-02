@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import clsx from "clsx";
 import { Button } from "../Button/Button";
-import { MyContext } from "@MyContext/index";
+import { BtnContext } from "@MyContext/BtnContext";
 import "./Confirmation.css";
 
-export function Confirmation({ hide, setHide, title, className, onConfirm }) {
-  const btnText = useContext(MyContext);
+export function Confirmation({ hide, setHide, className, onConfirm }) {
+  const { confirmTitle, confirmBtn } = useContext(BtnContext); // Заловок и текст кнопки для модалки подтверждения действия
   return (
     <div className={clsx("mask", { hidden: hide })}>
       <div className="modal">
@@ -17,7 +17,8 @@ export function Confirmation({ hide, setHide, title, className, onConfirm }) {
           &times;
         </div>
         <div className="modal__wrapper">
-          <h4 className="modal__title">{title}</h4>
+          {/* Заголовок модалки подтверждения */}
+          <h4 className="modal__title">{confirmTitle}</h4>
           <p className="modal__text">Подвердите действие</p>
           <div className="modal__buttons">
             <Button
@@ -28,7 +29,7 @@ export function Confirmation({ hide, setHide, title, className, onConfirm }) {
             />
             <Button
               type="button"
-              text={btnText}
+              text={confirmBtn} // Текст кнопки внутри модалки подверждения, передается из родительских компонентов
               className={className}
               onClick={() => onConfirm()}
             />

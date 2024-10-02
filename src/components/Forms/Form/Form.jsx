@@ -3,12 +3,18 @@ import { Button } from "@components/UI/Button/Button";
 import { Confirmation } from "@components/UI/Confirmation/Confirmation";
 import "./Form.css";
 
-export function Form({ title, setTitle, text, setText, handleSubmit }) {
+export function Form({
+  title, // Заголовок поста
+  setTitle,
+  text, // Текст поста
+  setText,
+  btnText, // Текст кнопки ВНУТРИ САМОЙ ФОРМЫ
+  handleSubmit, // Функция для отправки формы
+}) {
   const [hide, setHide] = useState(true); // Состоние для показа Confirmation (изначально скрыт)
 
   function onFormSubmit(e) {
     e.preventDefault(); // Остановка стандартного поведения
-    handleSubmit(); // Вызов переданной функции обработки
   }
   return (
     <>
@@ -45,8 +51,8 @@ export function Form({ title, setTitle, text, setText, handleSubmit }) {
         <p className="input-helper">Максимум 4000 символов</p>
         <div className="btn-container">
           <Button
-            type="submit"
-            text="Добавить пост"
+            type="submit" // Тип кнопки
+            text={btnText} // Текст кнопки
             className="green"
             onClick={() => setHide(false)}
           />
@@ -55,7 +61,7 @@ export function Form({ title, setTitle, text, setText, handleSubmit }) {
       <Confirmation
         hide={hide}
         setHide={setHide}
-        title="Опубликовать пост?"
+        // confirmTitle="Опубликовать пост?"
         className="green"
         onConfirm={handleSubmit}
       />

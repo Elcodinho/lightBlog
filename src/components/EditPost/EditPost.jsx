@@ -6,7 +6,7 @@ import { ru } from "date-fns/locale";
 import { getPosts, editPost, selectPosts } from "@store/postSlice";
 import { Form } from "@components/Forms/Form/Form";
 import { FetchError } from "@components/FetchError/FetchError";
-import { MyContext } from "@MyContext/index";
+import { BtnContext } from "@MyContext/BtnContext";
 import "./EditPost.css";
 
 export function EditPost() {
@@ -37,26 +37,35 @@ export function EditPost() {
     }
   }, [post]);
 
-  const handleSubmit = useCallback(() => {
+  // Функция отправки формы для редактировани поста
+  const handleSubmit = useCallback(async () => {
     if (newTitle.trim() !== "" && newText.trim() !== "") {
       const currentDate = new Date();
       const time = format(currentDate, "d MMMM yyyy, HH:mm", {
         locale: ru,
       });
-      dispatch(
-        editPost({ id, title: newTitle.trim(), text: newText.trim(), time })
-      ).then((action) => {
+      const author = post?.author;
+      try {
+        const action = await dispatch(
+          editPost({
+            id,
+            title: newTitle.trim(),
+            text: newText.trim(),
+            time,
+            author,
+          })
+        );
         if (editPost.fulfilled.match(action)) {
-          // Если добавление поста успешно, перенаправляем на главную
           setNewText("");
           setNewTitle("");
           setFetchError(null);
           navigate("/");
         } else {
-          // Обработка ошибки, если добавление не удалось
           setFetchError(action.payload);
         }
-      });
+      } catch (error) {
+        setFetchError("Произошла ошибка");
+      }
     } else {
       alert("Заполните все поля");
     }
@@ -83,15 +92,21 @@ export function EditPost() {
               />
             )}
             {status === "resolved" && (
-              <MyContext.Provider value="Редактировать">
+              <BtnContext.Provider
+                value={{
+                  confirmTitle: "Редактировать пост?",
+                  confirmBtn: "Редактировать",
+                }}
+              >
                 <Form
-                  title={newTitle}
+                  title={newTitle} // Заголовок поста
                   setTitle={setNewTitle}
-                  text={newText}
+                  text={newText} // Текст поста
                   setText={setNewText}
-                  handleSubmit={handleSubmit}
+                  btnText="Редактировать пост" // Текст кнопки в форме
+                  handleSubmit={handleSubmit} // Функция submit
                 />
-              </MyContext.Provider>
+              </BtnContext.Provider>
             )}
           </div>
         </div>

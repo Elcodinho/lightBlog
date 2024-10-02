@@ -1,8 +1,9 @@
+import { createPortal } from "react-dom";
 import { IoMdInformationCircle } from "react-icons/io";
 import "./Warning.css";
 
 export function Warning() {
-  return (
+  return createPortal(
     <div className="warning">
       <div className="warning__wrapper">
         <div>
@@ -12,6 +13,7 @@ export function Warning() {
           Ошибка! Неверная почта или пароль. Проверьте правильность ввода.
         </p>
       </div>
-    </div>
+    </div>,
+    document.getElementById("portal-root")
   );
 }

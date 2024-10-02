@@ -1,22 +1,25 @@
 .warning {
-  max-width: 700px;
-  margin: 0 auto;
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
 }
 
 .warning__wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
   gap: 20px;
 
   margin-top: 10px;
-  padding: 15px 0;
+  padding: 5px;
 
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   background: #e6e604;
+  opacity: 0.8;
 }
 
 .warning__text {
