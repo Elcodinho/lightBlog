@@ -4,7 +4,6 @@ import { removeUser } from "@store/userSlice";
 import { useAuth } from "@hooks/useAuth";
 import { Navigation } from "./Navigation/Navigation";
 import "./Header.css";
-import "@styles/fade.css";
 
 export function Header() {
   const location = useLocation();
@@ -21,7 +20,7 @@ export function Header() {
     // Удаляем данные о юзере и LocalStorage и Redux
     dispatch(removeUser());
     localStorage.removeItem("user");
-    navigate("/");
+    navigate("/login");
   }
 
   return (

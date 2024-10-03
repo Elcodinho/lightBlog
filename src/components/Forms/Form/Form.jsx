@@ -12,10 +12,21 @@ export function Form({
   handleSubmit, // Функция для отправки формы
 }) {
   const [hide, setHide] = useState(true); // Состоние для показа Confirmation (изначально скрыт)
+  const [isDisabled, setIsDisabled] = useState(true); // Состояние управления кнопкой (disabled)
 
   function onFormSubmit(e) {
     e.preventDefault(); // Остановка стандартного поведения
   }
+
+  // Управляем состоянием(disable) кнопки взавсимости от текстовых полей формы
+  useEffect(() => {
+    if (title.trim() !== "" && text.trim() !== "") {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [title, text]);
+
   return (
     <>
       <form className="new-post__form" onSubmit={onFormSubmit}>
@@ -54,7 +65,8 @@ export function Form({
             type="submit" // Тип кнопки
             text={btnText} // Текст кнопки
             className="green"
-            onClick={() => setHide(false)}
+            isDisabled={isDisabled}
+            onClick={() => setHide(false)} // Показываем окно подтверждения действия
           />
         </div>
       </form>

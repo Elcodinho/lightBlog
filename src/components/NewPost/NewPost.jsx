@@ -63,8 +63,8 @@ export function NewPost() {
             {!fetchError && (
               <BtnContext.Provider
                 value={{
-                  confirmTitle: "Опубликовать пост?",
-                  confirmBtn: "Опубликовать",
+                  confirmTitle: "Опубликовать пост?", // Заголовок для Confirmation
+                  confirmBtn: "Опубликовать", // Текст кнопки для Confirmation
                 }}
               >
                 <Form

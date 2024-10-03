@@ -12,6 +12,11 @@ export function AuthForm({
   handleSubmit, // Функция которая выполнится при отправке формы
   fetchError,
   setFetchError, // состояние ошибки при отправке формы
+
+  emailError,
+  setEmailError, // состоние ошибки ввода email
+  passError,
+  setPassError, // состоние ошибки ввода пароля
 }) {
   function onAuthSubmit(e) {
     e.preventDefault(); // Остановка стандартного поведения
@@ -19,9 +24,15 @@ export function AuthForm({
   }
 
   // Функция переключения класса ошибки (При наличии fetchError класс ошибки добавиться и наоборот)
-  function getCssClass(fetchError, baseClass, errorClass) {
+  function getCssClass(
+    fetchError,
+    emailError,
+    passError,
+    baseClass,
+    errorClass
+  ) {
     return clsx(baseClass, {
-      [errorClass]: fetchError,
+      [errorClass]: fetchError || emailError || passError,
     });
   }
 
@@ -31,6 +42,12 @@ export function AuthForm({
     if (fetchError) {
       setFetchError(null);
     }
+    if (emailError) {
+      setEmailError(null);
+    }
+    if (passError) {
+      setPassError(null);
+    }
   }
 
   function handlePasswordChange(e) {
@@ -38,6 +55,12 @@ export function AuthForm({
     // Если ошибка есть, то при вводе мы ее сбрасываем (это позволяет убрать все стили и уведомления об ошибках, как только пользователь начинает вводить исправления)
     if (fetchError) {
       setFetchError(null);
+    }
+    if (passError) {
+      setPassError(null);
+    }
+    if (emailError) {
+      setEmailError(null);
     }
   }
 
@@ -48,6 +71,8 @@ export function AuthForm({
           // Добавляется или удаляется доп класс, взависмости от работы функции
           className={getCssClass(
             fetchError,
+            emailError,
+            passError,
             "auth__input",
             "auth__error--border"
           )}
@@ -64,6 +89,8 @@ export function AuthForm({
           // Добавляется или удаляется доп класс, взависмости от работы функции
           className={getCssClass(
             fetchError,
+            emailError,
+            passError,
             "auth__label",
             "auth__error--color"
           )}
@@ -77,6 +104,8 @@ export function AuthForm({
           // Добавляется или удаляется доп класс, взависмости от работы функции
           className={getCssClass(
             fetchError,
+            emailError,
+            passError,
             "auth__input",
             "auth__error--border"
           )}
@@ -93,6 +122,8 @@ export function AuthForm({
           // Добавляется или удаляется доп класс, взависмости от работы функции
           className={getCssClass(
             fetchError,
+            emailError,
+            passError,
             "auth__label",
             "auth__error--color"
           )}

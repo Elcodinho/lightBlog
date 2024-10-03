@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser, startLoading, removeUser } from "@store/userSlice";
 import { Layout } from "./components/Layout";
@@ -13,8 +13,11 @@ import { EditPostPage } from "@pages/EditPostPage/EditPostPage";
 import { ProtectedRoutes } from "@components/ProtectedRoutes/ProtectedRoutes";
 import { ErrorPage } from "./pages/ErrorPage/ErrorPage";
 
+import { AnimatedRoutes } from "@components/UI/Transition/Transition"; // Компонент анимации
+
 function App() {
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(startLoading()); // Устанавливаем флаг загрузки
@@ -27,21 +30,23 @@ function App() {
   }, [dispatch]);
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="about" element={<About />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegisterPage />} />
-          {/* Группа страниц доступна только авторизованным пользователям */}
-          <Route element={<ProtectedRoutes />}>
-            <Route path="newpost" element={<NewPostPage />} />
-            <Route path="posts/:id" element={<PostPage />} />
-            <Route path="posts/:id/edit" element={<EditPostPage />} />
+      <AnimatedRoutes>
+        <Routes location={location} key={location.key}>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="about" element={<About />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterPage />} />
+            {/* Группа страниц доступна только авторизованным пользователям */}
+            <Route element={<ProtectedRoutes />}>
+              <Route path="newpost" element={<NewPostPage />} />
+              <Route path="posts/:id" element={<PostPage />} />
+              <Route path="posts/:id/edit" element={<EditPostPage />} />
+            </Route>
+            <Route path="*" element={<ErrorPage />} />
           </Route>
-          <Route path="*" element={<ErrorPage />} />
-        </Route>
-      </Routes>
+        </Routes>
+      </AnimatedRoutes>
     </>
   );
 }
