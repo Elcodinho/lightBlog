@@ -20,31 +20,27 @@ export function NewPost() {
   const navigate = useNavigate();
 
   async function handleSubmit() {
-    if (title.trim() !== "" && text.trim() !== "") {
-      const currentDate = new Date();
-      const time = format(currentDate, "d MMMM yyyy, HH:mm", {
-        locale: ru,
-      });
-      const author = user.email;
-      try {
-        const action = await dispatch(
-          addPost({ title: title.trim(), text: text.trim(), time, author })
-        );
-        if (addPost.fulfilled.match(action)) {
-          setText("");
-          setTitle("");
-          setFetchError(null);
-          navigate("/");
-        } else {
-          // Обработка ошибки, если добавление не удалось
-          setFetchError(action.payload);
-        }
-      } catch (error) {
+    const currentDate = new Date();
+    const time = format(currentDate, "d MMMM yyyy, HH:mm", {
+      locale: ru,
+    });
+    const author = user.email;
+    try {
+      const action = await dispatch(
+        addPost({ title: title.trim(), text: text.trim(), time, author })
+      );
+      if (addPost.fulfilled.match(action)) {
+        setText("");
+        setTitle("");
+        setFetchError(null);
+        navigate("/");
+      } else {
         // Обработка ошибки, если добавление не удалось
-        setFetchError("Произошла ошибка");
+        setFetchError(action.payload);
       }
-    } else {
-      alert("Заполните все поля");
+    } catch (error) {
+      // Обработка ошибки, если добавление не удалось
+      setFetchError("Произошла ошибка");
     }
   }
 

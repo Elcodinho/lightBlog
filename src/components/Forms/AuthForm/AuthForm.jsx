@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { Button } from "@components/UI/Button/Button";
 import "./AuthForm.css";
 
@@ -18,6 +20,13 @@ export function AuthForm({
   passError,
   setPassError, // состоние ошибки ввода пароля
 }) {
+  const [showPassword, setShowPassword] = useState(false); // Состтяние для управления показом пароля
+
+  // Функция переключает видимость пароля
+  const PasswordVisibilityToggle = () => {
+    setShowPassword((prev) => !prev); // Переключаем видимость пароля
+  };
+
   function onAuthSubmit(e) {
     e.preventDefault(); // Остановка стандартного поведения
     handleSubmit(); // Вызов переданной функции обработки
@@ -109,7 +118,7 @@ export function AuthForm({
             "auth__input",
             "auth__error--border"
           )}
-          type="password"
+          type={showPassword ? "text" : "password"} // Меняем тип в зависимости от состояния
           aria-label="пароль"
           placeholder=""
           required
@@ -130,6 +139,15 @@ export function AuthForm({
         >
           Введите пароль
         </label>
+        {!showPassword && (
+          <FaRegEye className="eye-icon" onClick={PasswordVisibilityToggle} />
+        )}
+        {showPassword && (
+          <FaRegEyeSlash
+            className="eye-icon"
+            onClick={PasswordVisibilityToggle}
+          />
+        )}
       </div>
 
       <Button type="submit" text={helperInfo.btnText} className="green" />

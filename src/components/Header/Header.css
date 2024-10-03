@@ -25,39 +25,40 @@
   gap: 50px;
 }
 
-.login-link {
+.auth-control {
   display: block;
-  font-size: 20px;
-  transition: all 0.2s linear;
+  padding: 10px 20px;
+
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff4c4c;
+  color: white;
+  font-size: 18px;
+
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.auth-control:hover {
+  background-color: #ff2e2e;
+  transform: scale(1.05);
+}
+
+.auth-control:active {
+  background-color: #e60000;
+  transform: scale(0.98);
+}
+
+.login-link {
+  background-color: rgb(56, 250, 66);
 }
 
 .login-link:hover {
-  transform: scale(105%);
-  color: aqua;
+  background-color: rgb(22, 242, 33);
+  transform: scale(1.05);
 }
 
-.logout-btn {
-  display: block;
-
-  border: none;
-  outline: none;
-  cursor: pointer;
-  background: none;
-
-  font-size: 20px;
-  color: white;
-  transition: all 0.2s linear;
-}
-
-.logout-btn:hover {
-  transform: scale(105%);
-  color: aqua;
-}
-
-.logout-btn:active {
-  color: rgb(0, 128, 255);
-}
-
-.active {
-  color: rgb(0, 128, 255);
+.login-link:active {
+  background-color: rgb(0, 216, 11);
+  transform: scale(0.98);
 }

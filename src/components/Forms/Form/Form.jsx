@@ -70,13 +70,14 @@ export function Form({
           />
         </div>
       </form>
-      <Confirmation
-        hide={hide}
-        setHide={setHide}
-        // confirmTitle="Опубликовать пост?"
-        className="green"
-        onConfirm={handleSubmit}
-      />
+      {!hide && (
+        <Confirmation
+          hide={hide}
+          setHide={setHide}
+          className="green"
+          onConfirm={handleSubmit}
+        />
+      )}
     </>
   );
 }

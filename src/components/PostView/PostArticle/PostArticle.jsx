@@ -11,6 +11,7 @@ import "./PostArticle.css";
 export function PostArticle({ id, setDeleteError }) {
   const [hide, setHide] = useState(true); // Состяние для управлением модалкой Confirmation
   const [isAuthor, setIsAuthor] = useState(false); // Состояние для проверки автора поста
+  const [isAdmin, setIsAdmin] = useState(false); // Состояние для проверки администратора
   const posts = useSelector(selectPosts);
   const user = useSelector(userSelect);
   const dispatch = useDispatch();
@@ -34,10 +35,18 @@ export function PostArticle({ id, setDeleteError }) {
   // Проверяем, является ли пользователем автора поста
   useEffect(() => {
     if (post && user) {
+      //  Удалять пост может его автор и админ
+      // Редактировать пост может только его автор
       if (post.author === user.email) {
         setIsAuthor(true);
       } else {
         setIsAuthor(false);
+      }
+
+      if (user.email === "admin@mail.com") {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
       }
     }
   }, [post, user]);
@@ -54,15 +63,17 @@ export function PostArticle({ id, setDeleteError }) {
         </time>
         <p className="post-page__text">{post.body}</p>
 
-        {/* Компоненты, позволяющие изменять данные поста, рендрятся только для автора этого поста */}
-        {isAuthor && (
+        {/* Компоненты, позволяющие изменять данные поста, рендрятся только для автора и админа этого поста */}
+        {(isAuthor || isAdmin) && (
           <div className="post-page__buttons">
-            <Button
-              type="button"
-              text="Редактировать пост"
-              className="green"
-              onClick={() => navigate(`/posts/${id}/edit`)} // Редирект на страницу EditPost для редактирования
-            />
+            {isAuthor && (
+              <Button
+                type="button"
+                text="Редактировать пост"
+                className="green"
+                onClick={() => navigate(`/posts/${id}/edit`)} // Редирект на страницу EditPost для редактирования
+              />
+            )}
             <Button
               type="button"
               text="Удалить пост"
@@ -72,16 +83,18 @@ export function PostArticle({ id, setDeleteError }) {
           </div>
         )}
       </article>
-      <BtnContext.Provider
-        value={{ confirmTitle: "Удалить пост?", confirmBtn: "Удалить" }}
-      >
-        <Confirmation
-          hide={hide}
-          setHide={setHide}
-          className="red"
-          onConfirm={handleDelete}
-        />
-      </BtnContext.Provider>
+      {!hide && (
+        <BtnContext.Provider
+          value={{ confirmTitle: "Удалить пост?", confirmBtn: "Удалить" }}
+        >
+          <Confirmation
+            hide={hide}
+            setHide={setHide}
+            className="red"
+            onConfirm={handleDelete}
+          />
+        </BtnContext.Provider>
+      )}
     </>
   );
 }

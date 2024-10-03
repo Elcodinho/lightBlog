@@ -1,11 +1,16 @@
+import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { removeUser } from "@store/userSlice";
 import { useAuth } from "@hooks/useAuth";
 import { Navigation } from "./Navigation/Navigation";
+import { Confirmation } from "@components/UI/Confirmation/Confirmation";
+import { BtnContext } from "@MyContext/BtnContext";
 import "./Header.css";
 
 export function Header() {
+  const [showLogout, setShowLogout] = useState(false); // Состояние для контроля отображения кнопки "Выйти"
+  const [hide, setHide] = useState(true); // Состяние для управлением модалкой Confirmation
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -13,9 +18,12 @@ export function Header() {
 
   // Функция для проверки, активна ли ссылка
   const getLinkClass = (path) => {
-    return `login-link ${location.pathname === path ? "active" : ""}`;
+    return `auth-control login-link ${
+      location.pathname === path ? "active" : ""
+    }`;
   };
 
+  // Функция деавторизации
   function handleLogout() {
     // Удаляем данные о юзере и LocalStorage и Redux
     dispatch(removeUser());
@@ -34,11 +42,11 @@ export function Header() {
           </div>
           <div className="header-links__wrapper">
             <Navigation />
+            {/* Только авторизованным пользователям */}
             {user && (
               <button
-                type="button"
-                onClick={handleLogout}
-                className="logout-btn"
+                className="auth-control logout-button"
+                onClick={() => setHide(false)}
               >
                 Выйти
               </button>
@@ -51,6 +59,19 @@ export function Header() {
           </div>
         </div>
       </div>
+      {/* Рендер модалки, только если hide===false */}
+      {!hide && (
+        <BtnContext.Provider
+          value={{ confirmTitle: "Вы хотите выйти?", confirmBtn: "Выйти" }}
+        >
+          <Confirmation
+            hide={hide}
+            setHide={setHide}
+            className="green"
+            onConfirm={handleLogout}
+          />
+        </BtnContext.Provider>
+      )}
     </header>
   );
 }

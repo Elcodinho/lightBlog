@@ -49,6 +49,12 @@
   font-size: 10px;
 }
 
+.eye-icon {
+  position: absolute;
+  top: 25%;
+  right: 5px;
+}
+
 .auth-helper {
   display: flex;
   flex-direction: column;

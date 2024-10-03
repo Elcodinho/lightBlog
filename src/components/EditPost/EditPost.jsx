@@ -39,35 +39,31 @@ export function EditPost() {
 
   // Функция отправки формы для редактировани поста
   const handleSubmit = useCallback(async () => {
-    if (newTitle.trim() !== "" && newText.trim() !== "") {
-      const currentDate = new Date();
-      const time = format(currentDate, "d MMMM yyyy, HH:mm", {
-        locale: ru,
-      });
-      const author = post?.author;
-      try {
-        const action = await dispatch(
-          editPost({
-            id,
-            title: newTitle.trim(),
-            text: newText.trim(),
-            time,
-            author,
-          })
-        );
-        if (editPost.fulfilled.match(action)) {
-          setNewText("");
-          setNewTitle("");
-          setFetchError(null);
-          navigate("/");
-        } else {
-          setFetchError(action.payload);
-        }
-      } catch (error) {
-        setFetchError("Произошла ошибка");
+    const currentDate = new Date();
+    const time = format(currentDate, "d MMMM yyyy, HH:mm", {
+      locale: ru,
+    });
+    const author = post?.author;
+    try {
+      const action = await dispatch(
+        editPost({
+          id,
+          title: newTitle.trim(),
+          text: newText.trim(),
+          time,
+          author,
+        })
+      );
+      if (editPost.fulfilled.match(action)) {
+        setNewText("");
+        setNewTitle("");
+        setFetchError(null);
+        navigate("/");
+      } else {
+        setFetchError(action.payload);
       }
-    } else {
-      alert("Заполните все поля");
+    } catch (error) {
+      setFetchError("Произошла ошибка");
     }
   }, [dispatch, id, newText, newTitle, navigate]);
 
