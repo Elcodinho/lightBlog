@@ -8,6 +8,7 @@ html {
 
 body {
   position: relative;
+
   background-color: rgb(242, 253, 253);
   font-family: "Roboto Condensed", Arial, sans-serif;
   font-weight: 400;
@@ -57,7 +58,7 @@ button {
 }
 
 main {
-  min-height: 557px;
+  min-height: 80vh;
 }
 
 .container {

@@ -7,9 +7,8 @@ import store from "./store/index.js";
 import App from "./App.jsx";
 
 // Общие стили
-import "./index.css";
-import "./styles/common.css";
 import "./styles/normalize.css";
+import "./styles/common.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

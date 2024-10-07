@@ -3,7 +3,7 @@
 export function validateEmail(email, setValidationError) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
-    setValidationError("Введите корректный адресс электронной почты");
+    setValidationError("Введите корректный адрес электронной почты");
     return false;
   }
   setValidationError(null);

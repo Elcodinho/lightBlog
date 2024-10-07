@@ -12,7 +12,6 @@ export function Posts({
   searchResult,
   setSearchResult,
 }) {
-  // последние два пропса тестовые
   const posts = useSelector(selectPosts);
   const [debouncedSearch, setDebouncedSearch] = useState(search);
 
@@ -32,8 +31,9 @@ export function Posts({
   useEffect(() => {
     const filteredPosts = posts.filter(
       (post) =>
-        post.title.toLowerCase().includes(search.toLowerCase()) ||
-        post.body.toLowerCase().includes(search.toLowerCase())
+        post.title.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        post.body.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        post.author.toLowerCase().includes(debouncedSearch.toLowerCase())
     );
 
     if (sortOrder === "new") {
@@ -59,6 +59,7 @@ export function Posts({
           body={item.body}
           author={item.author}
           isEdit={item.isEdit}
+          searchQuery={debouncedSearch}
         />
       ))}
     </ul>

@@ -1,4 +1,8 @@
 .post-page__article {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
   padding: 15px;
   border-radius: 5px;
   background: whitesmoke;
@@ -22,6 +26,7 @@
 }
 
 .post-page__buttons {
+  align-self: flex-end;
   display: flex;
   align-items: center;
   justify-content: flex-end;

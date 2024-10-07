@@ -20,17 +20,17 @@ export const Sort = React.memo(function Sort({
           className="search-item search-input"
           type="text"
           id="search-input"
-          placeholder="Введите текст"
+          placeholder="Введите текст или автора"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
       </label>
 
-      <label className="search-label" htmlFor="select-search">
+      <label className="sort-label" htmlFor="select-sort">
         Сортировать посты по дате
         <select
-          className="search-item search-select"
-          id="select-search"
+          className="sort-item sort-select"
+          id="select-sort"
           value={sortOrder}
           onChange={handleSortChange}
         >
