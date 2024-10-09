@@ -65,7 +65,7 @@ export function EditPost() {
     } catch (error) {
       setFetchError("Произошла ошибка");
     }
-  }, [dispatch, id, newText, newTitle, navigate]);
+  }, [dispatch, id, newText, newTitle, post?.author, navigate]);
 
   return (
     <main>

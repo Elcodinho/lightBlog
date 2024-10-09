@@ -4,13 +4,13 @@ import { useDispatch } from "react-redux";
 import { removeUser } from "@store/userSlice";
 import { useAuth } from "@hooks/useAuth";
 import { Navigation } from "./Navigation/Navigation";
+import { MobileNavigation } from "./Navigation/MobileNavigation/MobileNavigation";
 import { Confirmation } from "@components/UI/Confirmation/Confirmation";
 import { BtnContext } from "@MyContext/BtnContext";
 import "./Header.css";
 
 export function Header() {
-  const [showLogout, setShowLogout] = useState(false); // Состояние для контроля отображения кнопки "Выйти"
-  const [hide, setHide] = useState(true); // Состяние для управлением модалкой Confirmation
+  const [hide, setHide] = useState(true); // Состяние для управления модалкой Confirmation
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -57,6 +57,7 @@ export function Header() {
               </Link>
             )}
           </div>
+          <MobileNavigation setHide={setHide} user={user} />
         </div>
       </div>
       {/* Рендер модалки, только если hide===false */}

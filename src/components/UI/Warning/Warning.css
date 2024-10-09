@@ -1,6 +1,6 @@
 .warning {
   position: fixed;
-  top: 70px;
+  top: 12%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
@@ -22,6 +22,46 @@
   opacity: 0.8;
 }
 
+.info-circle {
+  width: 30px;
+  height: 30px;
+}
+
 .warning__text {
+  font-size: 14px;
   text-align: center;
+}
+
+/* Media */
+@media (max-width: 1024px) {
+  .warning {
+    top: 10%;
+  }
+}
+
+@media (max-width: 860px) {
+  .warning {
+    top: 7%;
+  }
+
+  .warning__text {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .warning {
+    top: 7.1%;
+    left: 0;
+    right: 0;
+    transform: none;
+  }
+  .info-circle {
+    width: 20px;
+    height: 20px;
+  }
+
+  .warning__text {
+    font-size: 12px;
+  }
 }

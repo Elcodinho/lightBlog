@@ -1,0 +1,47 @@
+.about__wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 0;
+}
+
+.about__title {
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.about__text {
+  margin-bottom: 50px;
+  font-size: 20px;
+}
+
+.about__text--last {
+  margin-bottom: 20px;
+}
+
+.about__list {
+  margin-bottom: 40px;
+  font-size: 20px;
+}
+
+.about__description {
+  margin-bottom: 15px;
+}
+
+/* Media */
+@media (max-width: 768px) {
+  .about__title {
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+
+  .about__text {
+    margin-bottom: 30px;
+    font-size: 16px;
+  }
+
+  .about__list {
+    margin-bottom: 30px;
+    font-size: 16px;
+  }
+}

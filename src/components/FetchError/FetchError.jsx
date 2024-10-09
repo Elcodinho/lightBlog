@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./FetchError.css";
 
@@ -11,3 +12,9 @@ export function FetchError({ error, text, path }) {
     </div>
   );
 }
+
+FetchError.propTypes = {
+  error: PropTypes.string.isRequired, // строка и обязательный пропс
+  text: PropTypes.string.isRequired, // строка и обязательный пропс
+  path: PropTypes.string.isRequired, // строка и обязательный пропс
+};

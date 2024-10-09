@@ -7,7 +7,7 @@ export function Warning({ warning }) {
     <div className="warning">
       <div className="warning__wrapper">
         <div>
-          <IoMdInformationCircle size={30} />
+          <IoMdInformationCircle className="info-circle" />
         </div>
         <p className="warning__text">{warning}</p>
       </div>

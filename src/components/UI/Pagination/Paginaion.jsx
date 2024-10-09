@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./Pagination.css";
 
 export const Pagination = React.memo(function Pagination({
@@ -29,3 +30,10 @@ export const Pagination = React.memo(function Pagination({
     </div>
   );
 });
+
+Pagination.propTypes = {
+  postsPerPage: PropTypes.number.isRequired, // Количество постов на странице
+  currentPage: PropTypes.number.isRequired, // Текущая страница
+  setCurrentPage: PropTypes.func.isRequired, // Функция для установки текущей страницы
+  searchResult: PropTypes.number.isRequired, // Общее количество постов для пагинации
+};

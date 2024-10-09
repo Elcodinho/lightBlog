@@ -36,7 +36,7 @@
   color: white;
   font-size: 18px;
 
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease;
 }
 
 .auth-control:hover {
@@ -61,4 +61,12 @@
 .login-link:active {
   background-color: rgb(0, 216, 11);
   transform: scale(0.98);
+}
+
+/* Media */
+
+@media (max-width: 768px) {
+  .header-links__wrapper {
+    display: none;
+  }
 }

@@ -44,3 +44,20 @@
   outline: none;
   border-color: blue;
 }
+
+/* Media */
+@media (max-width: 768px) {
+  .sort {
+    margin-bottom: 20px;
+  }
+
+  .search-label,
+  .sort-label {
+    font-weight: 600;
+  }
+
+  .search-item,
+  .sort-item {
+    font-size: 14px;
+  }
+}

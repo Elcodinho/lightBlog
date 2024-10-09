@@ -1,0 +1,100 @@
+/* Бургер-меню и его стили */
+.header__toggle {
+  padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.header__toggle-bar {
+  display: block;
+  width: 30px;
+  height: 4px;
+  background-color: #fff;
+  margin: 3px 0;
+  transition: all 0.3s ease;
+}
+
+.header__toggle {
+  display: none;
+}
+
+/* Mobile-nav */
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  padding: 10px 0;
+  background-color: #515253;
+  border-top: 3px solid #fff;
+  z-index: 5;
+}
+
+.mobile-nav__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile-nav__item {
+  display: block;
+  padding: 10px 0;
+
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.logout-button--mobile {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 0;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: none;
+  font-size: 18px;
+  text-align: center;
+  color: red;
+}
+
+.login-button--mobile {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 0;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: none;
+  font-size: 18px;
+  text-align: center;
+  color: rgb(56, 250, 66);
+}
+
+.hide-mobile__button {
+  display: block;
+  margin: 10px auto;
+
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: none;
+  text-align: center;
+  color: rgb(58, 199, 2);
+}
+
+@media (max-width: 768px) {
+  .header__toggle {
+    display: flex;
+    cursor: pointer;
+  }
+
+  .mobile-nav.active {
+    display: block;
+  }
+}

@@ -5,7 +5,7 @@ import { setUser, startLoading, removeUser } from "@store/userSlice";
 import { Layout } from "./components/Layout";
 import { HomePage } from "@pages/HomePage/HomePage";
 import { NewPostPage } from "@pages/NewPostPage/NewPostPage";
-import { About } from "./pages/About/About";
+import { AboutPage } from "./pages/AboutPage/AboutPage";
 import { RegisterPage } from "@pages/RegisterPage/RegisterPage";
 import { LoginPage } from "@pages/LoginPage/LoginPage";
 import { PostPage } from "@pages/PostPagePage/PostPagePage";
@@ -34,7 +34,7 @@ function App() {
         <Routes location={location} key={location.key}>
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
-            <Route path="about" element={<About />} />
+            <Route path="about" element={<AboutPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
             {/* Группа страниц доступна только авторизованным пользователям */}

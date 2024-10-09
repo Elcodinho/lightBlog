@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import PropTypes from "prop-types";
 import { selectPosts, deletePost } from "@store/postSlice";
 import { userSelect } from "@store/userSlice";
 import { Button } from "@components/UI/Button/Button";
@@ -98,3 +99,8 @@ export function PostArticle({ id, setDeleteError }) {
     </>
   );
 }
+
+PostArticle.propTypes = {
+  id: PropTypes.string.isRequired,
+  setDeleteError: PropTypes.func.isRequired,
+};

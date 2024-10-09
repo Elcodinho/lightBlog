@@ -6,7 +6,7 @@
   border-radius: 5px;
   outline: none;
   cursor: pointer;
-
+  text-align: center;
   color: white;
 
   transition: transform 0.2s linear;
@@ -35,7 +35,22 @@
   transition: all 0.2s linear;
 }
 
-.button:disabled:hover {
+.button:disabled:hover,
+.button:disabled:active {
   background-color: initial;
   color: initial;
+}
+
+/* Media */
+@media (max-width: 1024px) {
+  .button:disabled {
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .button {
+    padding: 8px 18px;
+    font-size: 14px;
+  }
 }

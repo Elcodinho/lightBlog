@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./Post.css";
 
@@ -51,3 +52,13 @@ export function Post({
     </li>
   );
 }
+
+Post.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  dateTime: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  isEdit: PropTypes.bool.isRequired,
+  searchQuery: PropTypes.string,
+};

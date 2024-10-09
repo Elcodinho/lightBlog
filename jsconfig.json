@@ -9,7 +9,8 @@
       "@MyContext/*": ["MyContext/*"],
       "@utils/*": ["utils/*"],
       "@hooks/*": ["hooks/*"],
-      "@styles/*": ["styles/*"]
+      "@styles/*": ["styles/*"],
+      "@assets/*": ["assets/*"]
     }
   },
   "include": ["src"] // Включение директории, где ты работаешь

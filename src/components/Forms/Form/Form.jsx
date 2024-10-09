@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { Button } from "@components/UI/Button/Button";
 import { Confirmation } from "@components/UI/Confirmation/Confirmation";
 import "./Form.css";
@@ -29,12 +30,12 @@ export function Form({
 
   return (
     <>
-      <form className="new-post__form" onSubmit={onFormSubmit}>
-        <label className="new-page__label" htmlFor="new-title">
+      <form className="post__form" onSubmit={onFormSubmit}>
+        <label className="page__label" htmlFor="new-title">
           Введите заголовок поста
         </label>
         <input
-          className="new-page__title"
+          className="page__title"
           type="text"
           aria-label="Заголовок поста"
           name="new-title"
@@ -45,11 +46,11 @@ export function Form({
           onChange={(e) => setTitle(e.target.value)}
         />
         <p className="input-helper">Максимум 60 символов</p>
-        <label className="new-page__label" htmlFor="new-text">
+        <label className="page__label" htmlFor="new-text">
           Введите текст поста
         </label>
         <textarea
-          className="new-page__text"
+          className="page__text"
           type="text"
           aria-label="Текст поста"
           name="new-text"
@@ -81,3 +82,12 @@ export function Form({
     </>
   );
 }
+
+Form.propTypes = {
+  title: PropTypes.string.isRequired,
+  setTitle: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+  setText: PropTypes.func.isRequired,
+  btnText: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+};

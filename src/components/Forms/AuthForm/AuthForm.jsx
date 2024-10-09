@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
+import PropTypes from "prop-types";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { Button } from "@components/UI/Button/Button";
 import "./AuthForm.css";
@@ -12,12 +13,12 @@ export function AuthForm({
   setPassword, // состояние поля password
   helperInfo, // Информаци для кнопки и о наличии аккаунта в форме
   handleSubmit, // Функция которая выполнится при отправке формы
-  fetchError,
+  fetchError = null,
   setFetchError, // состояние ошибки при отправке формы
 
-  emailError,
+  emailError = null,
   setEmailError, // состоние ошибки ввода email
-  passError,
+  passError = null,
   setPassError, // состоние ошибки ввода пароля
 }) {
   const [showPassword, setShowPassword] = useState(false); // Состтяние для управления показом пароля
@@ -161,3 +162,23 @@ export function AuthForm({
     </form>
   );
 }
+
+AuthForm.propTypes = {
+  email: PropTypes.string.isRequired,
+  setEmail: PropTypes.func.isRequired,
+  password: PropTypes.string.isRequired,
+  setPassword: PropTypes.func.isRequired,
+  helperInfo: PropTypes.shape({
+    btnText: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+    linkText: PropTypes.string.isRequired,
+  }).isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  fetchError: PropTypes.string,
+  setFetchError: PropTypes.func.isRequired,
+  emailError: PropTypes.string,
+  setEmailError: PropTypes.func.isRequired,
+  passError: PropTypes.string,
+  setPassError: PropTypes.func.isRequired,
+};

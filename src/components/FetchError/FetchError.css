@@ -20,3 +20,16 @@
 .fetch-error__link:hover {
   transform: scale(105%);
 }
+
+@media (max-width: 768px) {
+  .fetch-error__title {
+    margin: 35px 0 25px;
+    font-size: 30px;
+    font-weight: 700;
+  }
+
+  .fetch-error__link {
+    font-size: 20px;
+    font-weight: 600;
+  }
+}

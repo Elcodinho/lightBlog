@@ -14,6 +14,8 @@ export function Login() {
   const [password, setPassword] = useState(""); // состояние поля password
   const [fetchError, setFetchError] = useState(null); // состояние ошибки запроса
 
+  const warningMessage =
+    "Ошибка! Неверная почта или пароль. Проверьте правильность ввода";
   const [emailError, setEmailError] = useState(null); // состояние ошибки валидации email
   const [passError, setPassError] = useState(null); // состояние ошибки валидации пароля
   const dispatch = useDispatch();
@@ -51,11 +53,9 @@ export function Login() {
     <main>
       <section className="login">
         <div className="container">
-          {fetchError && (
-            <Warning warning="Ошибка! Неверная почта или пароль. Проверьте правильность ввода" />
+          {(fetchError || emailError || passError) && (
+            <Warning warning={warningMessage} />
           )}
-          {emailError && <Warning warning={emailError} />}
-          {passError && <Warning warning={passError} />}
 
           <div className="login__wrapper">
             <h2 className="login__title">Вход</h2>

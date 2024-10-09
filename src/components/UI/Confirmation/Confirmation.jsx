@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import clsx from "clsx";
+import PropTypes from "prop-types";
 import { Button } from "../Button/Button";
 import { BtnContext } from "@MyContext/BtnContext";
 import "./Confirmation.css";
 
-export function Confirmation({ hide, setHide, className, onConfirm }) {
+export function Confirmation({ hide, setHide, className = "", onConfirm }) {
   const { confirmTitle, confirmBtn } = useContext(BtnContext); // Заловок и текст кнопки для модалки подтверждения действия
   return (
     <div className={clsx("mask", { hidden: hide })}>
@@ -39,3 +40,10 @@ export function Confirmation({ hide, setHide, className, onConfirm }) {
     </div>
   );
 }
+
+Confirmation.propTypes = {
+  hide: PropTypes.bool.isRequired, // Состояние скрытия модалки
+  setHide: PropTypes.func.isRequired, // Функция для изменения состояния hide
+  className: PropTypes.string, // Опциональный класс для стилизации кнопки
+  onConfirm: PropTypes.func.isRequired, // Функция для обработки подтверждения действия
+};

@@ -40,3 +40,27 @@
 .post__text {
   font-size: 20px;
 }
+
+/* Media */
+@media (max-width: 768px) {
+  .post__link {
+    padding: 8px;
+  }
+
+  .post__title {
+    font-size: 20px;
+  }
+
+  .post__author {
+    font-size: 12px;
+  }
+
+  .post__text {
+    font-size: 18px;
+  }
+
+  .post__time {
+    margin-bottom: 10px;
+    font-size: 11px;
+  }
+}

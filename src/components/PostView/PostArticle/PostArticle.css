@@ -35,3 +35,28 @@
 
   margin-bottom: 20px;
 }
+
+/* Media */
+@media (max-width: 768px) {
+  .post-page__title {
+    font-size: 20px;
+  }
+  .post-page__author {
+    font-size: 12px;
+  }
+
+  .post-page__time {
+    font-size: 11px;
+  }
+
+  .post-page__text {
+    font-size: 16px;
+  }
+
+  .post-page__buttons {
+    align-self: flex-start;
+    gap: 10px;
+
+    margin-bottom: 10px;
+  }
+}

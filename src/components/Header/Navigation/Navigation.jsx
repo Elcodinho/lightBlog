@@ -11,7 +11,7 @@ export function Navigation() {
   const getLinkClass = ({ isActive }) =>
     `nav__link ${isActive ? "active" : ""}`;
   return (
-    <nav>
+    <nav className="nav" aria-label="Main Navigation">
       <ul className="nav__list">
         {navItems.map((item, index) => (
           <li className="nav__item" key={index}>

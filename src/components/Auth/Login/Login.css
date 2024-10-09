@@ -12,3 +12,12 @@
   font-weight: 700;
   text-align: center;
 }
+
+/* Media */
+@media (max-width: 768px) {
+  .login__title {
+    margin-bottom: 25px;
+
+    font-size: 26px;
+  }
+}

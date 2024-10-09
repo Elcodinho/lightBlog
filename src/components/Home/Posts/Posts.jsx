@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 import { selectPosts } from "@store/postSlice";
 import { Post } from "./Post/Post";
 import "./Posts.css";
@@ -41,7 +42,7 @@ export function Posts({
     } else {
       setSearchResult(filteredPosts);
     }
-  }, [posts, debouncedSearch, sortOrder]); // Важно использовать зависимость от sortOrder, чтобы сортировка по дате была динамической
+  }, [posts, debouncedSearch, sortOrder, setSearchResult]); // Важно использовать зависимость от sortOrder, чтобы сортировка по дате была динамической
 
   // Рассчитываем индексы постов для текущей страницы
   const indexOfLastPost = currentPage * postsPerPage;
@@ -65,3 +66,21 @@ export function Posts({
     </ul>
   );
 }
+
+Posts.propTypes = {
+  search: PropTypes.string.isRequired,
+  sortOrder: PropTypes.oneOf(["new", "old"]).isRequired,
+  currentPage: PropTypes.number.isRequired,
+  postsPerPage: PropTypes.number.isRequired,
+  searchResult: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      datetime: PropTypes.string.isRequired,
+      body: PropTypes.string.isRequired,
+      author: PropTypes.string.isRequired,
+      isEdit: PropTypes.bool.isRequired,
+    })
+  ).isRequired,
+  setSearchResult: PropTypes.func.isRequired,
+};

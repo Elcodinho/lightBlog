@@ -44,7 +44,9 @@ export function Register() {
       setFetchError(null);
       navigate("/");
     } catch (error) {
-      setFetchError(error.message);
+      error.message === "Firebase: Error (auth/email-already-in-use)."
+        ? setFetchError("Пользователь с таким email уже существует")
+        : setFetchError(error.message);
     }
   }
 

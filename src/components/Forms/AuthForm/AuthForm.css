@@ -82,3 +82,17 @@
 .auth__error--color {
   color: red;
 }
+
+/* Media */
+@media (max-width: 768px) {
+  .auth__form {
+    gap: 15px;
+
+    min-width: 300px;
+    padding: 20px;
+  }
+
+  .auth-helper {
+    font-size: 14px;
+  }
+}
