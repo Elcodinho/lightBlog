@@ -24,10 +24,10 @@ export function EditPost() {
 
   // Получаем посты только, если они еще не получены
   useEffect(() => {
-    if (!posts.length) {
+    if (!posts) {
       dispatch(getPosts());
     }
-  }, [dispatch, posts.length]);
+  }, [dispatch, posts]);
 
   // Устанавливаем заголовок и текст в форму, после того, как посты получены
   useEffect(() => {

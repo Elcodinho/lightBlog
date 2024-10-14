@@ -40,12 +40,15 @@ export function Form({
           aria-label="Заголовок поста"
           name="new-title"
           id="new-title"
-          maxLength="60"
+          maxLength="80"
           placeholder="Заголовок"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <p className="input-helper">Максимум 60 символов</p>
+        <p className="input-helper">
+          Максимум 80 символов
+          <span>{`${title.length}/80`}</span>
+        </p>
         <label className="page__label" htmlFor="new-text">
           Введите текст поста
         </label>
@@ -60,7 +63,10 @@ export function Form({
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <p className="input-helper">Максимум 4000 символов</p>
+        <p className="input-helper">
+          Максимум 4000 символов
+          <span>{`${text.length}/4000`}</span>
+        </p>
         <div className="btn-container">
           <Button
             type="submit" // Тип кнопки

@@ -14,7 +14,7 @@ export function FetchError({ error, text, path }) {
 }
 
 FetchError.propTypes = {
-  error: PropTypes.string.isRequired, // строка и обязательный пропс
+  error: PropTypes.string,
   text: PropTypes.string.isRequired, // строка и обязательный пропс
-  path: PropTypes.string.isRequired, // строка и обязательный пропс
+  path: PropTypes.string,
 };

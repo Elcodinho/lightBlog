@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "server": "json-server --watch src/data/db.json --port 3500",
-    "dev:full": "concurrently \"npm run dev\" \"npm run server\""
+    "comments": "json-server --watch src/data/comments.json --port 3600",
+    "dev:full": "concurrently \"npm run dev\" \"npm run server\" \"npm run comments\""
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",

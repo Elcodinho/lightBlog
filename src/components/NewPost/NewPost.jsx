@@ -14,7 +14,7 @@ export function NewPost() {
   const [title, setTitle] = useState(""); // Состояние заголовка поста
   const [text, setText] = useState(""); // Состояние текста поста
   const [fetchError, setFetchError] = useState(null); // Состояние ошибки при отправке запросе о добавлении нового поста
-  const user = useSelector(userSelect);
+  const user = useSelector(userSelect); // Мы не выполняем проверку на налчии user, так как компонент будет показан только если user есть
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

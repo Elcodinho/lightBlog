@@ -63,6 +63,22 @@
       "body": "piwpew",
       "author": "foxm@mail.ru",
       "isEdit": true
+    },
+    {
+      "id": "1728841530148",
+      "title": "Новый",
+      "datetime": "13 октября 2024, 20:45",
+      "body": "Новый тестовый пост для комментов",
+      "author": "pepa@mail.com",
+      "isEdit": false
+    },
+    {
+      "id": "1728897469219",
+      "title": "Второй новый",
+      "datetime": "14 октября 2024, 12:17",
+      "body": "для проверки комментов",
+      "author": "pepa@mail.com",
+      "isEdit": false
     }
   ]
 }
