@@ -84,11 +84,6 @@ main {
   text-align: center;
 }
 
-.edit-mark {
-  font-weight: 600;
-  color: darkviolet;
-}
-
 .hidden {
   display: none;
 }

@@ -59,7 +59,6 @@ export function Posts({
           dateTime={item.datetime}
           body={item.body}
           author={item.author}
-          isEdit={item.isEdit}
           searchQuery={debouncedSearch}
         />
       ))}

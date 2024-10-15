@@ -10,8 +10,10 @@ import {
   editComment,
 } from "@store/commentsSlice";
 import { userSelect } from "@store/userSlice";
+import { checkIfEditable } from "@utils/checkEditable";
 import { CommentForm } from "@components/Forms/CommentForm/CommentForm";
 import { FetchError } from "@components/FetchError/FetchError";
+import { Confirmation } from "@components/UI/Confirmation/Confirmation";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import "./PostComments.css";
 
@@ -135,15 +137,16 @@ export function PostComments({ id }) {
                         >
                           <FaTrash className="comment__btn__icon remove-icon" />
                         </button>
-                        {item.id !== editingComment && (
-                          <button
-                            className="comment__btn"
-                            type="button"
-                            onClick={() => handleEdit(item.id)}
-                          >
-                            <FaEdit className="comment__btn__icon edit-icon" />
-                          </button>
-                        )}
+                        {item.id !== editingComment &&
+                          checkIfEditable(item.time, 2) && (
+                            <button
+                              className="comment__btn"
+                              type="button"
+                              onClick={() => handleEdit(item.id)}
+                            >
+                              <FaEdit className="comment__btn__icon edit-icon" />
+                            </button>
+                          )}
                       </div>
                     )}
                     {isEditing && item.id === editingComment && (

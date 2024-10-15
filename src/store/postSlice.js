@@ -31,7 +31,6 @@ export const addPost = createAsyncThunk(
         datetime: time,
         body: text,
         author: author,
-        isEdit: false,
       };
       const response = await fetch(API_URL, {
         method: "POST",
@@ -71,18 +70,14 @@ export const deletePost = createAsyncThunk(
 // Функция для редактирования постов
 export const editPost = createAsyncThunk(
   "posts/editPost",
-  async function ({ id, title, text, time, author }, { rejectWithValue }) {
+  async function ({ id, title, text }, { rejectWithValue }) {
     const post = {
-      id: id,
-      title: title,
-      datetime: time,
+      title,
       body: text,
-      author,
-      isEdit: true,
     };
     try {
       const response = await fetch(`${API_URL}/${id}`, {
-        method: "PUT",
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },

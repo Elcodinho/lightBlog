@@ -1,8 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { format } from "date-fns";
-import { ru } from "date-fns/locale";
 import { getPosts, editPost, selectPosts } from "@store/postSlice";
 import { Form } from "@components/Forms/Form/Form";
 import { FetchError } from "@components/FetchError/FetchError";
@@ -39,19 +37,12 @@ export function EditPost() {
 
   // Функция отправки формы для редактировани поста
   const handleSubmit = useCallback(async () => {
-    const currentDate = new Date();
-    const time = format(currentDate, "d MMMM yyyy, HH:mm", {
-      locale: ru,
-    });
-    const author = post?.author;
     try {
       const action = await dispatch(
         editPost({
           id,
           title: newTitle.trim(),
           text: newText.trim(),
-          time,
-          author,
         })
       );
       if (editPost.fulfilled.match(action)) {

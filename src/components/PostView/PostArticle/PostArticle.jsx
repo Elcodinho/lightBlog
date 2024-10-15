@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import PropTypes from "prop-types";
 import { selectPosts, deletePost } from "@store/postSlice";
 import { userSelect } from "@store/userSlice";
+import { checkIfEditable } from "@utils/checkEditable";
 import { Button } from "@components/UI/Button/Button";
 import { Confirmation } from "@components/UI/Confirmation/Confirmation";
 import { BtnContext } from "@MyContext/BtnContext";
@@ -57,17 +58,13 @@ export function PostArticle({ id, setDeleteError }) {
       <article className="post-page__article">
         <h2 className="post-page__title">{post.title}</h2>
         <p className="post-page__author">Автор: {post.author}</p>
-        <time className="post-page__time">
-          {post.isEdit && <span className="edit-mark">Ред:</span>}
-          {/* edit-mark общий стиль в папке styles */}
-          {post.datetime}
-        </time>
+        <time className="post-page__time">{post.datetime}</time>
         <p className="post-page__text">{post.body}</p>
 
         {/* Компоненты, позволяющие изменять данные поста, рендрятся только для автора и админа этого поста */}
         {(isAuthor || isAdmin) && (
           <div className="post-page__buttons">
-            {isAuthor && (
+            {isAuthor && checkIfEditable(post.datetime, 6) && (
               <Button
                 type="button"
                 text="Редактировать пост"

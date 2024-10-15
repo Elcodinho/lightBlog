@@ -8,7 +8,6 @@ export function Post({
   dateTime,
   body,
   author,
-  isEdit,
   searchQuery, // Строка поиска
 }) {
   // Функция для выделения совпадающего текста
@@ -35,13 +34,8 @@ export function Post({
           <p className="post__author">
             Автор: {highlightText(author, searchQuery)}
           </p>
-          <time className="post__time">
-            {isEdit && <span className="edit-mark">Ред:</span>}
-            {/* edit-mark общий стиль в папке styles */}
-            {dateTime}
-          </time>
+          <time className="post__time">{dateTime}</time>
           <p className="post__text">
-            {/* {body.length < 55 ? body : `${body.slice(0, 55)}...`} */}
             {highlightText(
               body.length < 55 ? body : `${body.slice(0, 55)}...`,
               searchQuery
@@ -59,6 +53,5 @@ Post.propTypes = {
   dateTime: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
-  isEdit: PropTypes.bool.isRequired,
   searchQuery: PropTypes.string,
 };
