@@ -78,7 +78,6 @@ Posts.propTypes = {
       datetime: PropTypes.string.isRequired,
       body: PropTypes.string.isRequired,
       author: PropTypes.string.isRequired,
-      isEdit: PropTypes.bool.isRequired,
     })
   ).isRequired,
   setSearchResult: PropTypes.func.isRequired,

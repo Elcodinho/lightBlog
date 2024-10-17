@@ -22,28 +22,6 @@
   list-style: none;
 }
 
-.comments__item {
-  padding: 10px 0;
-  border-bottom: 1px solid #b2b2b2;
-}
-
-.comments__author {
-  font-size: 14px;
-  color: #007bff;
-}
-
-.comments__time {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 13px;
-  color: grey;
-}
-
-.comments__text {
-  margin: 5px 0 10px;
-  font-size: 16px;
-}
-
 /* .remove-comment {
   padding: 5px 10px;
 
@@ -59,48 +37,8 @@
   background-color: #9d1926;
 } */
 
-.comments-btn__block {
-  display: flex;
-  justify-content: flex-end;
-  gap: 15px;
-}
-
-.comment__btn {
-  display: block;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-.comment__btn__icon {
-  width: 20px;
-  height: 20px;
-  color: #464545;
-  transition: color 0.2s ease;
-}
-
-.remove-icon:hover {
-  color: red;
-}
-
-.edit-icon:hover {
-  color: rgb(17, 228, 63);
-}
-
 @media (max-width: 768px) {
   .comments__title {
     font-size: 18px;
-  }
-
-  .comments__author {
-    font-size: 12px;
-  }
-
-  .comments__time {
-    font-size: 11px;
-  }
-
-  .comments__text {
-    font-size: 14px;
   }
 }

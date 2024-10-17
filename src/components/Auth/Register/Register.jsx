@@ -6,6 +6,7 @@ import { registerUser } from "@utils/registerUser";
 import { validateEmail } from "@utils/validateEmail";
 import { validatePassword } from "@utils/validatePassword";
 import { AuthForm } from "@components/Forms/AuthForm/AuthForm";
+import { Loading } from "@components/UI/Loading/Loading";
 import { Warning } from "@components/UI/Warning/Warning";
 import "./Register.css";
 
@@ -16,6 +17,7 @@ export function Register() {
 
   const [emailError, setEmailError] = useState(null); // состояние ошибки валидации email
   const [passError, setPassError] = useState(null); // состояние ошибки валидации пароля
+  const [loading, setLoading] = useState(false); // состояние загрузки после отправки формы
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -42,7 +44,11 @@ export function Register() {
       setEmail("");
       setPassword("");
       setFetchError(null);
-      navigate("/");
+      setLoading(true); // Устанавливаем loading для показа анимации
+      setTimeout(() => {
+        setLoading(false);
+        navigate("/"); // Редирект после анимации
+      }, 3000);
     } catch (error) {
       error.message === "Firebase: Error (auth/email-already-in-use)."
         ? setFetchError("Пользователь с таким email уже существует")
@@ -77,6 +83,7 @@ export function Register() {
           </div>
         </div>
       </section>
+      {loading && <Loading />}
     </main>
   );
 }

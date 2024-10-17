@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts, editPost, selectPosts } from "@store/postSlice";
 import { Form } from "@components/Forms/Form/Form";
+import { Loading } from "@components/UI/Loading/Loading";
 import { FetchError } from "@components/FetchError/FetchError";
 import { BtnContext } from "@MyContext/BtnContext";
 import "./EditPost.css";
@@ -19,6 +20,7 @@ export function EditPost() {
   const [newTitle, setNewTitle] = useState(""); // Состояние заголовка поста для редактирования
   const [newText, setNewText] = useState(""); // Состояние текста поста для редактирования
   const [fetchError, setFetchError] = useState(null); // Состояние ошибки при отправке на сервер редактированного поста
+  const [loading, setLoading] = useState(false); // состояние загрузки после отправки формы
 
   // Получаем посты только, если они еще не получены
   useEffect(() => {
@@ -49,7 +51,11 @@ export function EditPost() {
         setNewText("");
         setNewTitle("");
         setFetchError(null);
-        navigate("/");
+        setLoading(true); // Устанавливаем loading для показа анимации
+        setTimeout(() => {
+          setLoading(false);
+          navigate("/"); // Редирект после анимации
+        }, 3000);
       } else {
         setFetchError(action.payload);
       }
@@ -98,6 +104,7 @@ export function EditPost() {
           </div>
         </div>
       </section>
+      {loading && <Loading />}
     </main>
   );
 }

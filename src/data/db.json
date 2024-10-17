@@ -87,6 +87,13 @@
       "body": "Тест",
       "author": "pepa@mail.com",
       "isEdit": false
+    },
+    {
+      "id": "1729157375699",
+      "title": "Мой первый пост",
+      "datetime": "17 октября 2024, 12:29",
+      "body": "Привет тут будет текст",
+      "author": "daster@mail.com"
     }
   ]
 }

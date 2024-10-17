@@ -5,8 +5,18 @@ import { Button } from "../Button/Button";
 import { BtnContext } from "@MyContext/BtnContext";
 import "./Confirmation.css";
 
-export function Confirmation({ hide, setHide, className = "", onConfirm }) {
-  const { confirmTitle, confirmBtn } = useContext(BtnContext); // Заловок и текст кнопки для модалки подтверждения действия
+export function Confirmation({
+  hide,
+  setHide,
+  className = "",
+  onConfirm,
+  propTitle,
+  propBtn,
+}) {
+  const context = useContext(BtnContext); // Заловок и текст кнопки для модалки подтверждения действия
+  // Если значения не переданы через пропсы, то используем их из контекста
+  const confirmTitle = propTitle || (context && context.confirmTitle);
+  const confirmBtn = propBtn || (context && context.confirmBtn);
   return (
     <div className={clsx("mask", { hidden: hide })}>
       <div className="modal">

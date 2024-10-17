@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "@store/postSlice";
 import { userSelect } from "@store/userSlice";
 import { Form } from "@components/Forms/Form/Form";
+import { Loading } from "@components/UI/Loading/Loading";
 import { FetchError } from "@components/FetchError/FetchError";
 import { BtnContext } from "@MyContext/BtnContext";
 import "./NewPost.css";
@@ -14,6 +15,7 @@ export function NewPost() {
   const [title, setTitle] = useState(""); // Состояние заголовка поста
   const [text, setText] = useState(""); // Состояние текста поста
   const [fetchError, setFetchError] = useState(null); // Состояние ошибки при отправке запросе о добавлении нового поста
+  const [loading, setLoading] = useState(false); // состояние загрузки после отправки формы
   const user = useSelector(userSelect); // Мы не выполняем проверку на налчии user, так как компонент будет показан только если user есть
 
   const dispatch = useDispatch();
@@ -33,7 +35,11 @@ export function NewPost() {
         setText("");
         setTitle("");
         setFetchError(null);
-        navigate("/");
+        setLoading(true); // Устанавливаем loading для показа анимации
+        setTimeout(() => {
+          setLoading(false);
+          navigate("/"); // Редирект после анимации
+        }, 3000);
       } else {
         // Обработка ошибки, если добавление не удалось
         setFetchError(action.payload);
@@ -76,6 +82,7 @@ export function NewPost() {
           </div>
         </div>
       </section>
+      {loading && <Loading />}
     </main>
   );
 }

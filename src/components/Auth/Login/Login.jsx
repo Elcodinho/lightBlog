@@ -6,6 +6,7 @@ import { loginUser } from "@utils/loginUser";
 import { validateEmail } from "@utils/validateEmail";
 import { validatePassword } from "@utils/validatePassword";
 import { AuthForm } from "@components/Forms/AuthForm/AuthForm";
+import { Loading } from "@components/UI/Loading/Loading";
 import { Warning } from "@components/UI/Warning/Warning";
 import "./Login.css";
 
@@ -18,6 +19,7 @@ export function Login() {
     "Ошибка! Неверная почта или пароль. Проверьте правильность ввода";
   const [emailError, setEmailError] = useState(null); // состояние ошибки валидации email
   const [passError, setPassError] = useState(null); // состояние ошибки валидации пароля
+  const [loading, setLoading] = useState(false); // состояние загрузки после отправки формы
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -43,7 +45,11 @@ export function Login() {
       setEmail("");
       setPassword("");
       setFetchError(null);
-      navigate("/");
+      setLoading(true); // Устанавливаем loading для показа анимации
+      setTimeout(() => {
+        setLoading(false);
+        navigate("/"); // Редирект после анимации
+      }, 3000);
     } catch (error) {
       setFetchError(error.message);
     }
@@ -77,6 +83,7 @@ export function Login() {
           </div>
         </div>
       </section>
+      {loading && <Loading />}
     </main>
   );
 }
